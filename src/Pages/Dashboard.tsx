@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
-import {CheckCircle} from "lucide-react"
+import { CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     sessionStorage.removeItem("authToken");
-  
+    navigate("/");
   };
   const appData = useContext(AppContext);
-  const user = appData?.userData
+  const user = appData?.userData;
   if (!user) {
-    return
+    return;
   }
 
   return (
